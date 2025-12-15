@@ -1,15 +1,21 @@
 import { fetchPopularMovies, fetchSingleMovie } from "../api/tmdb.js";
 import { movieCard } from "../ui/movieCard.js";
+import { createLoadMoreButton } from "../ui/createLoadMoreButton.js";
 import { createSetFromLocalMovieData } from "../storage/localData.js";
 import { loadLocalMovieData } from "../storage/localData.js";
 
-export const loadPopularMovies = async () => {
+export const loadPopularMovies = async (page) => {
   try {
-    const remoteData = await fetchPopularMovies();
+    const remoteData = await fetchPopularMovies(page);
     const localDataSet = createSetFromLocalMovieData();
     const localData = loadLocalMovieData();
 
     console.log(remoteData);
+    if (remoteData.total_pages > page) {
+      const loadMoreButton = document.getElementById("loadMoreButton");
+      if (loadMoreButton) loadMoreButton.setAttribute("page", ++page);
+      else createLoadMoreButton(++page);
+    }
     remoteData.results.forEach((movie) => {
       // We add default values to the retrieved movie object data
       movie.isFavorite = false;

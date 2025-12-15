@@ -1,8 +1,8 @@
 import { TMDB_API_TOKEN } from "../config.js";
 
-export const fetchPopularMovies = async () => {
+export const fetchPopularMovies = async (page = 1) => {
   const options = { method: "GET", headers: { accept: "application/json", Authorization: "Bearer " + TMDB_API_TOKEN } };
-  return fetch("https://api.themoviedb.org/3/movie/popular", options)
+  return fetch(`https://api.themoviedb.org/3/movie/popular?page=${page}`, options)
     .then((response) => response.json())
     .catch((err) => {
       console.error(err);
