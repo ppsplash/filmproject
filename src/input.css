@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@layer base {
+  input {
+    @apply border p-2 rounded-sm;
+  }
+  body {
+    @apply p-8 bg-neutral-900;
+  }
+  h2 {
+    @apply font-bold text-xl;
+  }
+  input,
+  textarea {
+    @apply focus:outline-none;
+  }
+}
+
+@layer utilities {
+  .movieIconShadow {
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+  }
+
+  .navBG {
+    background: linear-gradient(to right, #4e49e5, #737cec, #376e9e);
+  }
+}
+
+@layer components {
+  .test {
+    color: red;
+  }
+  .container {
+    @apply m-auto;
+  }
+  .button,
+  button {
+    @apply py-2 px-5 bg-blue-600 text-white rounded-md cursor-pointer;
+  }
+
+  .stars {
+    display: flex;
+    direction: rtl;
+    gap: 2px;
+    align-items: center;
+  }
+
+  .star {
+    width: 15px;
+    height: 15px;
+    fill: #333;
+    cursor: pointer;
+    transition: fill 0.2s;
+  }
+
+  .star:hover,
+  .star:hover ~ .star {
+    fill: gold;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+    height: 100vh;
+  }
+}

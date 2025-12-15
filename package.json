@@ -1,0 +1,17 @@
+{
+  "name": "test_delete",
+  "version": "1.0.0",
+  "description": "",
+  "main": "console.js",
+  "scripts": {
+    "tailwind": "npx @tailwindcss/cli -i ./src/input.css -o ./src/style.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.17",
+    "tailwindcss": "^4.1.17"
+  }
+}

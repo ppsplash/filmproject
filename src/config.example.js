@@ -1,0 +1,1 @@
+export const TMDB_API_TOKEN = "OUR_TMDB_API_TOKEN_HERE";
