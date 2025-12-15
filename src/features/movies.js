@@ -1,4 +1,4 @@
-import { fetchPopularMovies } from "../api/tmdb.js";
+import { fetchPopularMovies, fetchSingleMovie } from "../api/tmdb.js";
 import { movieCard } from "../ui/movieCard.js";
 import { createSetFromLocalMovieData } from "../storage/localData.js";
 import { loadLocalMovieData } from "../storage/localData.js";
@@ -22,6 +22,25 @@ export const loadPopularMovies = async () => {
       }
       movieCard(movie);
     });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const loadFavoriteMovies = async () => {
+  try {
+    // First get the favorites movie data from local storage
+    const data = loadLocalMovieData();
+    const favoritedMovies = data.filter((el) => el.isFavorite === true);
+
+    // Query TMDB for each favorite
+    for (const favoritedMovie of favoritedMovies) {
+      // Need to use for... of here as forEach is not async
+      const movie = await fetchSingleMovie(favoritedMovie.id);
+      movie.isFavorite = true;
+      movie.note = favoritedMovie.note ?? "";
+      movieCard(movie);
+    }
   } catch (err) {
     console.error(err);
   }
