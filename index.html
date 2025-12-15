@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Watchmovies.com</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @layer base {
+        section {
+          @apply mb-10 md:mb-25;
+        }
+      }
+      @layer components {
+        button {
+          @apply px-4 py-2 text-center text-sm font-semibold inline-block bg-emerald-600 text-white cursor-pointer uppercase transition duration-200 ease-in-out rounded-md hover:bg-yellow-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2 active:scale-95;
+        }
+        .container {
+          @apply max-w-500 m-auto p-5 min-h-full;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray">
+    <header>
+      <section class="container flex py-2 items-center bg-blue-300">
+        <div id="nav" class="flex justify-around w-full">
+          <div>Watchmovies Online Free</div>
+          <a href="#">Homepage</a>
+          <a href="#">Journal</a>
+        </div>
+      </section>
+    </header>
+    <main>
+      <section class="container flex justify-center p-4 bg-blue-300">
+        <input type="search" name="q" placeholder="Search your film here" class="border rounded px-4 py-2 mr-5" />
+        <button class="button" type="submit">Search</button>
+      </section>
+      <section class="container">
+        <section id="filmlist" class="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-10"></section>
+      </section>
+    </main>
+    <script type="module" src="script.js" defer></script>
+  </body>
+</html>
