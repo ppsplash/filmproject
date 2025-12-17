@@ -1,7 +1,6 @@
-import { loadPopularMovies } from "../features/movies.js";
+import { loadMovies } from "../features/movies.js";
 
 export const createLoadMoreButton = (page) => {
-  console.log("Should create button for page" + page);
   const mainDiv = document.querySelector("main");
   const button = document.createElement("div");
   button.innerHTML = `
@@ -14,7 +13,7 @@ export const createLoadMoreButton = (page) => {
     </div>
   `;
   button.addEventListener("click", (event) => {
-    loadPopularMovies(event.target.getAttribute("page"));
+    loadMovies(event.target.getAttribute("page"));
   });
   mainDiv.appendChild(button);
 };

@@ -30,3 +30,16 @@ export const movieCard = (movie) => {
   `;
   moviesListHook.appendChild(card);
 };
+
+// export const displaySearchedMovie = (arrid) => {
+//   const container = document.getElementById("moviesListHook");
+//   container.innerHTML = "";
+//   arrid.forEach((id) => {
+//     movieCard(id);
+//   });
+//   // arrid.map((id) => {
+//   //   if (id != container.dataset_id) {
+//   //     return (container.innerHTML = "");
+//   //   }
+//   // });
+// };
