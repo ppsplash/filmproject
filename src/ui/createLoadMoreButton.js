@@ -4,6 +4,7 @@ import { fetchPopularMovies } from "../api/tmdb.js";
 export const createLoadMoreButton = (page, apiCall, keyword) => {
   const mainDiv = document.querySelector("main");
   const button = document.createElement("div");
+  button.id = "loadMoreButtonWrapper";
   button.innerHTML = `
     <div class="container">
       <div class="flex justify-center mt-8">
