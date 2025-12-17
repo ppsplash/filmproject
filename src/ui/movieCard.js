@@ -1,7 +1,7 @@
 export const movieCard = (movie) => {
   const moviesListHook = document.getElementById("moviesListHook");
   const card = document.createElement("div");
-  card.classList.add("relative", "group", "rounded-md");
+  card.classList.add("relative", "group", "rounded-md", "movieCard");
   card.innerHTML = `
     <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt="" class="w-full rounded-md overflow-hidden relative -top-0.5"/>
     <div class="moviesIcons -top-3 left-0 transition-all absolute ">

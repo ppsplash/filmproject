@@ -33,6 +33,10 @@ const handlerHeartClick = (heart) => {
     svg.classList.remove("fill-red-600", "opacity-100");
     svg.classList.add("fill-white", "opacity-50");
     createNotification("Movie removed from your favorites");
+    // If we are on the journal page we should also remove that movie from the dom
+    if (document.querySelector("body").id === "journalPage") {
+      heart.closest(".movieCard").remove();
+    }
   }
   // Else we must add it as as favorite
   else {
