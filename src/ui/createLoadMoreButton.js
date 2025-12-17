@@ -1,8 +1,10 @@
 import { loadMovies } from "../features/movies.js";
+import { fetchPopularMovies } from "../api/tmdb.js";
 
-export const createLoadMoreButton = (page) => {
+export const createLoadMoreButton = (page, apiCall, keyword) => {
   const mainDiv = document.querySelector("main");
   const button = document.createElement("div");
+  button.id = "loadMoreButtonWrapper";
   button.innerHTML = `
     <div class="container">
       <div class="flex justify-center mt-8">
@@ -13,7 +15,8 @@ export const createLoadMoreButton = (page) => {
     </div>
   `;
   button.addEventListener("click", (event) => {
-    loadMovies(event.target.getAttribute("page"));
+    console.log(apiCall, keyword);
+    loadMovies(event.target.getAttribute("page"), apiCall, keyword);
   });
   mainDiv.appendChild(button);
 };

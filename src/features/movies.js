@@ -8,7 +8,7 @@ export const loadMovies = async (page, apiRequest, keyword) => {
   try {
     let remoteData;
     if (keyword) {
-      remoteData = await apiRequest(keyword);
+      remoteData = await apiRequest(page, keyword);
     } else {
       remoteData = await apiRequest(page);
     }
@@ -16,10 +16,13 @@ export const loadMovies = async (page, apiRequest, keyword) => {
     const localData = loadLocalMovieData();
 
     console.log(remoteData);
+    const loadMoreButton = document.getElementById("loadMoreButton");
+    const loadMoreButtonWrapper = document.getElementById("loadMoreButtonWrapper");
     if (remoteData.total_pages > page) {
-      const loadMoreButton = document.getElementById("loadMoreButton");
-      if (loadMoreButton) loadMoreButton.setAttribute("page", ++page);
-      else createLoadMoreButton(++page);
+      if (loadMoreButton) loadMoreButtonWrapper.remove();
+      createLoadMoreButton(++page, apiRequest, keyword);
+    } else if (loadMoreButton) {
+      loadMoreButtonWrapper.remove();
     }
     remoteData.results.forEach((movie) => {
       // We add default values to the retrieved movie object data
