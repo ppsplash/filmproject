@@ -1,12 +1,17 @@
-import { fetchPopularMovies, fetchSingleMovie } from "../api/tmdb.js";
+import { fetchSingleMovie, searchMovies } from "../api/tmdb.js";
 import { movieCard } from "../ui/movieCard.js";
 import { createLoadMoreButton } from "../ui/createLoadMoreButton.js";
 import { createSetFromLocalMovieData } from "../storage/localData.js";
 import { loadLocalMovieData } from "../storage/localData.js";
 
-export const loadPopularMovies = async (page) => {
+export const loadMovies = async (page, apiRequest, keyword) => {
   try {
-    const remoteData = await fetchPopularMovies(page);
+    let remoteData;
+    if (keyword) {
+      remoteData = await apiRequest(page, keyword);
+    } else {
+      remoteData = await apiRequest(page);
+    }
     const localDataSet = createSetFromLocalMovieData();
     const localData = loadLocalMovieData();
 
