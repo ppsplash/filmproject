@@ -30,3 +30,12 @@ export const movieCard = (movie) => {
   `;
   moviesListHook.appendChild(card);
 };
+
+export const displaySearchedMovie = (arrid) => {
+  let list = document.querySelectorAll("#moviesListHook div");
+  console.log(list);
+  let listid = document.getElementsByName("data-id");
+  if (listid != arrid) {
+    listid.innerHTML = "";
+  }
+};

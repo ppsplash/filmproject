@@ -1,3 +1,5 @@
+import { searchMovies } from "../api/tmdb.js";
+
 export const setupGlobalEvents = () => {
   searchBarToggleMobile();
 };
@@ -9,3 +11,13 @@ const searchBarToggleMobile = () => {
     searchBar.classList.toggle("hidden");
   });
 };
+
+let input = document.querySelector("#searchBar input");
+
+let button = document.querySelector("#searchBar button");
+button.addEventListener("click", (event) => {
+  event.preventDefault();
+  let keyword = input.value;
+  console.log(keyword);
+  searchMovies(keyword);
+});
