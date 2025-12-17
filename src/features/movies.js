@@ -16,10 +16,12 @@ export const loadMovies = async (page, apiRequest, keyword) => {
     const localData = loadLocalMovieData();
 
     console.log(remoteData);
+    const loadMoreButton = document.getElementById("loadMoreButton");
     if (remoteData.total_pages > page) {
-      const loadMoreButton = document.getElementById("loadMoreButton");
-      if (loadMoreButton) loadMoreButton.setAttribute("page", ++page);
-      else createLoadMoreButton(++page);
+      if (loadMoreButton) loadMoreButton.remove();
+      createLoadMoreButton(++page, apiRequest, keyword);
+    } else {
+      loadMoreButton.remove();
     }
     remoteData.results.forEach((movie) => {
       // We add default values to the retrieved movie object data
