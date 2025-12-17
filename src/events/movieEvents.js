@@ -12,7 +12,7 @@ the checks.
 export const setupMovieEvents = () => {
   moviesListHook.addEventListener("click", (clickEvent) => {
     const heart = clickEvent.target.closest(".movieHeart");
-    if (heart) return handlerHeartClick(heart, clickEvent);
+    if (heart) return handlerHeartClick(heart);
     const note = clickEvent.target.closest(".movieNote");
     if (note) return handleNoteClick(note);
     const closeButton = clickEvent.target.closest(".closeButton");
@@ -22,7 +22,7 @@ export const setupMovieEvents = () => {
   });
 };
 
-const handlerHeartClick = (heart, clickEvent) => {
+const handlerHeartClick = (heart) => {
   const svg = heart.querySelector("svg");
   const data = loadLocalMovieData();
   const foundObj = data.find((el) => el.id === Number(heart.getAttribute("data-id")));
