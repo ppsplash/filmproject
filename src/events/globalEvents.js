@@ -4,6 +4,7 @@ import { searchMovies } from "../api/tmdb.js";
 export const setupGlobalEvents = () => {
   searchBarToggleMobile();
   hittingSearchButton();
+  enterOnSearchInput();
 };
 
 const searchBarToggleMobile = () => {
@@ -15,13 +16,25 @@ const searchBarToggleMobile = () => {
 };
 
 const hittingSearchButton = () => {
-  let input = document.querySelector("#searchBar input");
-  let button = document.querySelector("#searchBar button");
+  const input = document.querySelector("#searchBar input");
+  const button = document.querySelector("#searchBar button");
   button.addEventListener("click", (event) => {
     event.preventDefault();
-    let container = document.getElementById("moviesListHook");
+    const container = document.getElementById("moviesListHook");
     container.innerHTML = "";
-    let keyword = input.value.toLowerCase();
+    const keyword = input.value.toLowerCase();
     loadMovies(1, searchMovies, keyword);
+  });
+};
+
+const enterOnSearchInput = () => {
+  const input = document.querySelector("#searchBar input");
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      const container = document.getElementById("moviesListHook");
+      container.innerHTML = "";
+      const keyword = input.value.toLowerCase();
+      loadMovies(1, searchMovies, keyword);
+    }
   });
 };

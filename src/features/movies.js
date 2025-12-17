@@ -20,7 +20,7 @@ export const loadMovies = async (page, apiRequest, keyword) => {
     if (remoteData.total_pages > page) {
       if (loadMoreButton) loadMoreButton.remove();
       createLoadMoreButton(++page, apiRequest, keyword);
-    } else {
+    } else if (loadMoreButton) {
       loadMoreButton.remove();
     }
     remoteData.results.forEach((movie) => {
