@@ -8,7 +8,7 @@ export const loadMovies = async (page, apiRequest, keyword) => {
   try {
     let remoteData;
     if (keyword) {
-      remoteData = await apiRequest(page, keyword);
+      remoteData = await apiRequest(keyword);
     } else {
       remoteData = await apiRequest(page);
     }
