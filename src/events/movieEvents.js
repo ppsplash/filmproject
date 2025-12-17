@@ -12,7 +12,7 @@ the checks.
 export const setupMovieEvents = () => {
   moviesListHook.addEventListener("click", (clickEvent) => {
     const heart = clickEvent.target.closest(".movieHeart");
-    if (heart) return handlerHeartClick(heart);
+    if (heart) return handlerHeartClick(heart, clickEvent);
     const note = clickEvent.target.closest(".movieNote");
     if (note) return handleNoteClick(note);
     const closeButton = clickEvent.target.closest(".closeButton");
@@ -22,7 +22,7 @@ export const setupMovieEvents = () => {
   });
 };
 
-const handlerHeartClick = (heart) => {
+const handlerHeartClick = (heart, clickEvent) => {
   const svg = heart.querySelector("svg");
   const data = loadLocalMovieData();
   const foundObj = data.find((el) => el.id === Number(heart.getAttribute("data-id")));
@@ -33,6 +33,10 @@ const handlerHeartClick = (heart) => {
     svg.classList.remove("fill-red-600", "opacity-100");
     svg.classList.add("fill-white", "opacity-50");
     createNotification("Movie removed from your favorites");
+    // If we are on the journal page we should also remove that movie from the dom
+    if (document.querySelector("body").id === "journalPage") {
+      heart.closest(".movieCard").remove();
+    }
   }
   // Else we must add it as as favorite
   else {
